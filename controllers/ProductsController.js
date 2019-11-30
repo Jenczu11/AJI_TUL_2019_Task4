@@ -8,35 +8,43 @@ exports.getAll = (req,res) => {
             res.json(allProducts);
         }
     )
-    // res.json(products);
+    
 };
 exports.getById = (req,res) => {
     Product.getById(req.params.id).then((product) =>{
         res.json(product);
     })
-// res.json(_.find(products,function(product) {return product.id == req.params.id}));
+
 };
 
 exports.store = (req,res) =>
 {
-    let newProduct = {
+    const newProduct =Product.create( {
         'id': products.length+1,
         'name': req.body.name,
         'description': req.body.description,
         'price': req.body.price,
         'amount': req.body.amount,
-    }
-    products.push(newProduct);
-    res.json({
-        'status':'saved!',
-        'product': newProduct,
-    });
+    }).then( () => {
+        res.json({
+            'status':'saved!',
+            'product': newProduct,
+        });
+    })
+    // products.push(newProduct);
+    
 };
 exports.updateById = (req,res) => {
-    const currentProduct = _.find(products, (product) => {return product.id == req.params.id});
-    currentProduct.name = req.body.name;
-    currentProduct.description = req.body.description;
-    currentProduct.price = req.body.price;
-    currentProduct.amount = req.body.amount;
-    res.json({'updatedProduct': currentProduct});
+       // Please note the API change!
+   Product.update(req.body.product).then(
+    function(product) {
+        res.json(product);
+    }
+)    
+//     const currentProduct = _.find(products, (product) => {return product.id == req.params.id});
+//     currentProduct.name = req.body.name;
+//     currentProduct.description = req.body.description;
+//     currentProduct.price = req.body.price;
+//     currentProduct.amount = req.body.amount;
+//     res.json({'updatedProduct': currentProduct});
 }

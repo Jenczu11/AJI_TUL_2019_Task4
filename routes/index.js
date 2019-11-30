@@ -9,6 +9,6 @@ router.get('/', IndexController.home);
 router.get('/products',ProductsController.getAll);
 router.get('/products/:id',ProductsController.getById);
 router.post('/products',ProductsController.store);
-router.put('/products/:id',ProductsController.updateById);
+router.put('/products',ProductsController.updateById);
 
 module.exports = router;
