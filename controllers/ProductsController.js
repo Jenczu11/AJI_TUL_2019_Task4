@@ -1,11 +1,20 @@
 const products = require('../data/ProductData');
+const Product = require('../models/product');
 const _ = require('underscore');
 
 exports.getAll = (req,res) => {
-    res.json(products);
+    Product.getAll().then(
+        function(allProducts) {
+            res.json(allProducts);
+        }
+    )
+    // res.json(products);
 };
 exports.getById = (req,res) => {
-res.json(_.find(products,function(product) {return product.id == req.params.id}));
+    Product.getById(req.params.id).then((product) =>{
+        res.json(product);
+    })
+// res.json(_.find(products,function(product) {return product.id == req.params.id}));
 };
 
 exports.store = (req,res) =>
