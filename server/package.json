@@ -2,7 +2,7 @@
   "name": "aji_tul_2019_task4",
   "version": "1.0.0",
   "description": "Zadanie 4 - aplikacja końcowa. Termin - XIII zajęcia",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
