@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Jenczu11/AJI_TUL_2019_Task4#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
     "express": "^4.17.1"
   }
 }
