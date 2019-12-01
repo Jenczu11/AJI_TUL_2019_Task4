@@ -62,27 +62,26 @@ exports.addOrder = async (req, res) => {
     if (req.body.numer_telefonu.search(/^\+?[0-9]+$/) === -1) {
       throw "Numer telefonu jest błędny.";
     }
-    let order = new Order({
+    Order.create({
       data_zatwierdzenia: req.body.data_zatwierdzenia,
       stan_zamowienia: req.body.stan_zamowienia,
       nazwa_uzytkownika: req.body.nazwa_uzytkownika,
       email: req.body.email,
       numer_telefonu: req.body.email
     })
-      .save()
-      .then(newOrder1 => {
-        newOrder1.attributes.zamowione_produkty = [];
+      .then(passedOrder => {
+        passedOrder.attributes.zamowione_produkty = [];
 
         for (i in req.body.zamowione_produkty) {
           let zamowione_produkty = new OrderedProducts({
-            id_zamowienia: newOrder1.id,
+            id_zamowienia: passedOrder.id,
             id_produktu: req.body.zamowione_produkty[i].id_produktu,
             ilosc: req.body.zamowione_produkty[i].ilosc
           });
-          newOrder1.attributes.zamowione_produkty.push(zamowione_produkty);
+          passedOrder.attributes.zamowione_produkty.push(zamowione_produkty);
           zamowione_produkty.save();
         }
-        return res.status(201).json(newOrder1);
+        return res.status(201).json(passedOrder);
       })
 
       .catch(err => {
