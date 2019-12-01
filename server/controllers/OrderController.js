@@ -92,8 +92,10 @@ exports.modifyOrderStatus = (req,res) => {
             res.status(500).json({error: "Nie mozesz zmienic statusu na poprzedni."})
             return;
         }
+        let oldStatus = order.get('stan_zamowienia');
         order.set('stan_zamowienia', parseInt(req.body.stan_zamowienia));
         order.save();
+        console.log(`Changed orderID ${req.params.id} : status ${oldStatus} to status ${req.body.stan_zamowienia}`);
       res.json(order);
     })
     .catch(err => {
