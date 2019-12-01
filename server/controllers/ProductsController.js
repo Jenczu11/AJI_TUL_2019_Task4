@@ -18,12 +18,13 @@ exports.getById = (req,res) => {
 
 exports.store = (req,res) =>
 {
-    const newProduct =Product.create( {
+    const newProduct = Product.create( {
         'id': products.length+1,
-        'name': req.body.name,
-        'description': req.body.description,
-        'price': req.body.price,
-        'amount': req.body.amount,
+        'nazwa': req.body.nazwa,
+        'opis': req.body.opis,
+        'cena_jednostkowa': req.body.cena_jednostkowa,
+        'waga_jednostkowa': req.body.waga_jednostkowa,
+        'kategoria_towaru': req.body.kategoria_towaru
     }).then( () => {
         res.json({
             'status':'saved!',
@@ -34,7 +35,6 @@ exports.store = (req,res) =>
     
 };
 exports.updateById = (req,res) => {
-       // Please note the API change!
    Product.update(req.body.product).then(
     function(product) {
         res.json(product);
