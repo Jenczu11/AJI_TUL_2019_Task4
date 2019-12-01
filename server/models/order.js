@@ -22,17 +22,19 @@ module.exports.create = (order) => {
     numer_telefonu: order.email
 }).save();
 };
-
-// module.exports.update = (product) => {
-//    return new Product({
-//        id: product.id
-//    }).save( {
-//       nazwa: product.nazwa,
-//       opis: product.opis,
-//       cena_jednostkowa: product.cena_jednostkowa,
-//       waga_jednostkowa: product.waga_jednostkowa,
-//       kategoria_towaru: product.kategoria_towaru
-//        }, 
-//        {patch: true}
-//    );
-// }
+module.exports.getById = (id) => {
+   return new Order({'id':id}).fetch();
+}
+module.exports.update = (order) => {
+   return new Order( {
+       id: order.id
+   }).save( {
+      data_zatwierdzenia: order.data_zatwierdzenia,
+      stan_zamowienia: order.stan_zamowienia,
+      nazwa_uzytkownika: order.nazwa_uzytkownika,
+      email: order.email,
+      numer_telefonu: order.email
+       }, 
+       {patch: true}
+   );
+}
