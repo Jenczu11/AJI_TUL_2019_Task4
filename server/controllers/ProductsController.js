@@ -25,18 +25,20 @@ exports.store = (req,res) =>
             'error': 'ujemna cena/waga'
         })
     }
+    else
     if(inp.cena_jednostkowa==0 || inp.waga_jednostkowa==0)
     {
         res.status(400).json({
             'error': 'zerowa cena/waga'
         })
-    }
+    }else
     if(inp.opis === "" || inp.nazwa==="")
     {
         res.status(400).json({
             'error': 'pusty opis/nazwa'
         })
-    }
+    }else
+    {
     const newProduct = Product.create( {
         'nazwa': inp.nazwa,
         'opis': inp.opis,
@@ -49,10 +51,18 @@ exports.store = (req,res) =>
             'product': newProduct,
         });
     })
+}
     // products.push(newProduct);
     
 };
 exports.updateById = (req,res) => {
+    let listProducts;
+    Product.getAll().then(
+        function(allProducts) {
+            listProducts=allProducts;
+        }
+    ) 
+    console.log(listProducts);
 
    Product.update(req.body.product).then(
     function(product) {
