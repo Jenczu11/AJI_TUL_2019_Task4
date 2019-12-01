@@ -7,8 +7,7 @@ exports.getAll = (req,res) => {
         function(allProducts) {
             res.json(allProducts);
         }
-    )
-    
+    )  
 };
 exports.getById = (req,res) => {
     Product.getById(req.params.id).then((product) =>{
