@@ -1,10 +1,10 @@
 //product.js
 const bookshelf = require('../config/bookshelf');
 
-const OrderStates = bookshelf.Model.extend({
+const OrderStatus = bookshelf.Model.extend({
    tableName: 'stan_zamowienia'
 })
 
 module.exports.getAll = () => {
-    return OrderStates.fetchAll();
+    return OrderStatus.fetchAll();
  }

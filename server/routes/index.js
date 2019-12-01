@@ -5,7 +5,7 @@ const router = express.Router();
 const IndexController = require('../controllers/IndexController')
 const ProductsController = require('../controllers/ProductsController');
 const CategoriesController = require('../controllers/CategoriesController');
-const OrderStatesController = require('../controllers/OrderStatesController');
+const OrderStatesController = require('../controllers/OrderStatusController');
 // zdefiniowanie odpowiedzi dla "strony głównej"
 
 router.get('/', IndexController.home);
