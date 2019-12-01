@@ -27,7 +27,7 @@ exports.store = (req, res) => {
     console.log("Products store");
     try {
         checkRequest(req,0)
-        let newProduct = Product.create({
+        const newProduct = Product.create({
             nazwa: req.body.nazwa,
             opis: req.body.opis,
             cena_jednostkowa: req.body.cena_jednostkowa,

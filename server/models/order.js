@@ -22,6 +22,7 @@ module.exports.create = (order) => {
     numer_telefonu: order.email
 }).save();
 };
+
 module.exports.getById = (id) => {
    return new Order({'id':id}).fetch();
 }

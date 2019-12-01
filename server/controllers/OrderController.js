@@ -10,7 +10,8 @@ exports.getAll = (req,res) => {
     )  
 };
 exports.getOrderById = (req, res) => {
-    console.log("Order getOrderById");
+    console.log("OrderController -> getOrderById");
+    console.log(req.params.id);
   Order.getById(req.params.id)
     .then(order => {
       res.json(order);
@@ -19,28 +20,26 @@ exports.getOrderById = (req, res) => {
       res.status(404).json({ error: "Order not found" });
     });
 };
+
 exports.getAllOrdersByUser = (req,res) => {
-    console.log("OrderController -> getAllOrdersByUser")
-    console.log(req.query.user);
     Order.getAll().then((orders) => {
-        let out = [];
-        for(let i = 1; i <= orders.length; i++){
-            if(orders.get(i).attributes.nazwa_uzytkownika == req.query.user){
-                out.push(orders.get(i));
-            }
-        }
-        res.json(out);
+        res.json(_.filter(JSON.parse(JSON.stringify(orders)), (e) => {return e.nazwa_uzytkownika==req.query.user}));
+
     })
     .catch((err) => {
         res.status(404).json({error: err.message});
     });
+    
 };
 exports.getAllOrdersByStatus = (req,res) => {
     console.log("OrderController -> getAllOrdersByStatus")
-    Order.getAll().then((orders) => {
+    console.log(req.params.status)
+     Order.getAll().then((orders) => {
         let out = [];
         for(let i = 1; i <= orders.length; i++){
+          console.log(orders.get(i).attributes.stan_zamowienia==req.params.status)
             if(orders.get(i).attributes.stan_zamowienia == req.params.status){
+              // console.log("if")
                 out.push(orders.get(i));
             }
         }
@@ -65,7 +64,7 @@ exports.addOrder = (req,res) => {
             .then(() => {
               res.json({
                 status: "saved!",
-                order: newOrder
+                order: (JSON.parse(JSON.stringify(newOrder._boundTo.attributes)))
               });
             }).catch((err) => {
                 res.status(500).json({error: err.message})
