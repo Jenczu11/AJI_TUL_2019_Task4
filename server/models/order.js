@@ -1,10 +1,19 @@
 //product.js
 const bookshelf = require('../config/bookshelf');
 
+
 const Order = bookshelf.Model.extend({
-   tableName: 'zamowienie'
+   tableName: 'zamowienie',
+   orderedProducts() {
+      return this.hasMany('orderedproducts', 'zamowienie_id', 'id');
+  },
+  orderStatus() {
+      return this.belongsTo('orderstatus', 'stan_zamowienia', 'id');
+  },
+  
 })
 
+module.exports = bookshelf.model('Order', Order);
 module.exports.getAll = () => {
    return Order.fetchAll();
 }
