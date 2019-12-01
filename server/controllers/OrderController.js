@@ -34,20 +34,12 @@ exports.getAllOrdersByUser = (req,res) => {
 exports.getAllOrdersByStatus = (req,res) => {
     console.log("OrderController -> getAllOrdersByStatus")
     console.log(req.params.status)
-     Order.getAll().then((orders) => {
-        let out = [];
-        for(let i = 1; i <= orders.length; i++){
-          console.log(orders.get(i).attributes.stan_zamowienia==req.params.status)
-            if(orders.get(i).attributes.stan_zamowienia == req.params.status){
-              // console.log("if")
-                out.push(orders.get(i));
-            }
-        }
-        res.json(out);
-    })
-    .catch((err) => {
-        res.status(404).json({error: err.message});
-    });
+    Order.getAll().then((orders) => {
+      res.json(_.filter(JSON.parse(JSON.stringify(orders)), (e) => {return e.stan_zamowienia==req.params.status}));
+  })
+  .catch((err) => {
+      res.status(404).json({error: err.message});
+  });
 
 }
 
@@ -96,11 +88,11 @@ exports.modifyOrderStatus = (req,res) => {
     console.log("OrderController -> modifyOrderStatus");
     Order.getById(req.params.id)
     .then(order => {
-        if (order.get('stan_zamowienia') > parseInt(req.params.status)) {
+        if (order.get('stan_zamowienia') > parseInt(req.body.stan_zamowienia)) {
             res.status(500).json({error: "Nie mozesz zmienic statusu na poprzedni."})
             return;
         }
-        order.set('stan_zamowienia', parseInt(req.params.status));
+        order.set('stan_zamowienia', parseInt(req.body.stan_zamowienia));
         order.save();
       res.json(order);
     })
