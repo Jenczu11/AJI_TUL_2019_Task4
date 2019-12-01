@@ -27,7 +27,7 @@ exports.store = (req, res) => {
     console.log("Products store");
     try {
         checkRequest(req,0)
-        const newProduct = Product.create({
+        let newProduct = Product.create({
             nazwa: req.body.nazwa,
             opis: req.body.opis,
             cena_jednostkowa: req.body.cena_jednostkowa,
@@ -35,9 +35,10 @@ exports.store = (req, res) => {
             kategoria_towaru: req.body.kategoria_towaru
           })
             .then(() => {
+                console.log();
               res.json({
                 status: "saved!",
-                product: newProduct
+                product: (JSON.parse(JSON.stringify(newProduct._boundTo.attributes)))
               });
             }).catch((err) => {
                 res.status(500).json({error: err.message})
