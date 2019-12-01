@@ -1,4 +1,4 @@
-const products = require('../data/ProductData');
+// const products = require('../data/ProductData');
 const Product = require('../models/product');
 const _ = require('underscore');
 
@@ -18,13 +18,31 @@ exports.getById = (req,res) => {
 
 exports.store = (req,res) =>
 {
+    let inp = req.body;
+    if(inp.cena_jednostkowa<0 || inp.waga_jednostkowa<0)
+    {
+        res.status(400).json({
+            'error': 'ujemna cena/waga'
+        })
+    }
+    if(inp.cena_jednostkowa==0 || inp.waga_jednostkowa==0)
+    {
+        res.status(400).json({
+            'error': 'zerowa cena/waga'
+        })
+    }
+    if(inp.opis === "" || inp.nazwa==="")
+    {
+        res.status(400).json({
+            'error': 'pusty opis/nazwa'
+        })
+    }
     const newProduct = Product.create( {
-        'id': products.length+1,
-        'nazwa': req.body.nazwa,
-        'opis': req.body.opis,
-        'cena_jednostkowa': req.body.cena_jednostkowa,
-        'waga_jednostkowa': req.body.waga_jednostkowa,
-        'kategoria_towaru': req.body.kategoria_towaru
+        'nazwa': inp.nazwa,
+        'opis': inp.opis,
+        'cena_jednostkowa': inp.cena_jednostkowa,
+        'waga_jednostkowa': inp.waga_jednostkowa,
+        'kategoria_towaru': inp.kategoria_towaru
     }).then( () => {
         res.json({
             'status':'saved!',
@@ -35,6 +53,7 @@ exports.store = (req,res) =>
     
 };
 exports.updateById = (req,res) => {
+
    Product.update(req.body.product).then(
     function(product) {
         res.json(product);
