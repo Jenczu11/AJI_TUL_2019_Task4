@@ -21,4 +21,5 @@ router.get('/categories',CategoriesController.getAll);
 router.get('/status',OrderStatesController.getAll);
 
 router.get('/orders',OrderController.getAll)
+router.post('/orders',OrderController.addOrder)
 module.exports = router;
