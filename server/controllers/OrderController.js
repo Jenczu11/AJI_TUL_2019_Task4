@@ -16,7 +16,7 @@ exports.getOrderById = (req, res) => {
       res.json(order);
     })
     .catch(err => {
-      res.status(404).json({ error: "Order not found" });
+      res.status(404).json({ error: err.message });
     });
 };
 

@@ -5,10 +5,10 @@ const bookshelf = require('../config/bookshelf');
 const Order = bookshelf.Model.extend({
    tableName: 'zamowienie',
    orderedProducts() {
-      return this.hasMany('orderedproducts', 'zamowienie_id', 'id');
+      return this.hasMany('OrderedProducts', 'id_zamowienia', 'id');
   },
   orderStatus() {
-      return this.belongsTo('orderstatus', 'stan_zamowienia', 'id');
+      return this.belongsTo('OrderStatus', 'stan_zamowienia', 'id');
   },
   
 })
@@ -33,7 +33,7 @@ module.exports.create = (order) => {
 };
 
 module.exports.getById = (id) => {
-   return new Order({'id':id}).fetch();
+   return new Order({'id':id}).fetch({withRelated: ['orderedProducts']});
 }
 module.exports.update = (order) => {
    return new Order( {

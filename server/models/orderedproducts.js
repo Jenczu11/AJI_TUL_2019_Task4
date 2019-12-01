@@ -4,10 +4,10 @@ const OrderedProducts = bookshelf.Model.extend({
     tableName: 'zamowienie_produkty',
     idAttribute: 'id',
     product() {
-        return this.belongsTo('Product', 'produkt_id', 'id');
+        return this.belongsTo('Product', 'id_produktu', 'id');
     },
     order() {
-        return this.belongsTo('Order', 'zamowienie_id', 'id');
+        return this.belongsTo('Order', 'id_zamowienie', 'id');
     }
 });
 

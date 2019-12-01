@@ -4,7 +4,7 @@ const bookshelf = require('../config/bookshelf');
 const Product = bookshelf.Model.extend({
    tableName: 'produkty',
    category: function() {
-       return this.belongsTo("category", "kategoria", "id")
+       return this.belongsTo("Categories", "kategoria_towaru", "id")
    },
    orderedProducts() {
        return this.hasMany('orderedproducts', 'produkt_id', 'id');
@@ -16,7 +16,7 @@ module.exports.getAll = () => {
 }
 
 module.exports.getById = (id) => {
-   return new Product({'id':id}).fetch();
+   return new Product({'id':id}).fetch({withRelated: ['category']});
 }
 
 module.exports.create = (product) => {
