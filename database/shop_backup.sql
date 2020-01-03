@@ -188,7 +188,8 @@ INSERT INTO shop.zamowienie (id, data_zatwierdzenia, stan_zamowienia, nazwa_uzyt
 INSERT INTO shop.zamowienie (id, data_zatwierdzenia, stan_zamowienia, nazwa_uzytkownika, email, numer_telefonu) VALUES (8, '2019-12-03', 1, 'Jan Kowalski', 'kowal@wp.pl', 'kowal@wp.pl');
 create table zamowienie_produkty
 (
-    id            int not null,
+    id                 int auto_increment
+        primary key,
     id_zamowienia int not null,
     id_produktu   int not null,
     ilosc         int not null,

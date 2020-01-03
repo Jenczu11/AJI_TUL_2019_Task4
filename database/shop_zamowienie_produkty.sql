@@ -1,6 +1,7 @@
 create table zamowienie_produkty
 (
-    id            int not null,
+    id                 int auto_increment
+        primary key,
     id_zamowienia int not null,
     id_produktu   int not null,
     ilosc         int not null,
