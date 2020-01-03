@@ -25,7 +25,7 @@ router.post('/orders',OrderController.addOrder);
 router.put('/orders',OrderController.updateById);
 
 router.get('/orders/id/:id',OrderController.getOrderById);
-router.put('/orders/id/:id', OrderController.modifyOrderStatus);
+router.put('/orders/:id/status/:status', OrderController.modifyOrderStatus);
 
 router.get('/orders/user/', OrderController.getAllOrdersByUser);
 router.get('/orders/status/:status', OrderController.getAllOrdersByStatus);

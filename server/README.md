@@ -93,6 +93,11 @@ Wyswietl wszystkie zamowienia uzytkownika
 ```http
 localhost:8081/orders/user/?user={user}
 ```
+lub
+```http
+localhost:8081/orders/?user={user}
+```
+
 Wyświetlenie jednego elementu (po identyfikatorze)
 ```http
 localhost:8081/orders/id/{id}
@@ -104,29 +109,22 @@ localhost:8081/orders/status/{stan}
 ### PUT
 Zmiana stanu zamówienia
 ```http
-localhost:8081/orders/{id_zamowienia}
+localhost:8081/orders/{id}/status/{status}
 ```
-Body
-```json
-{
-	"stan_zamowienia": "2"
-}
-```
+
 Aktualizacja całego zamówienia
 ```http
 localhost:8081/orders
 ```
 Body
 ```json
-{
-    "order": {
-    	"id": "3",
+{ 
+    	"id": "1025",
         "data_zatwierdzenia": "2019-12-03",
         "stan_zamowienia": 1,
         "nazwa_uzytkownika": "Janek Kowalski",
         "email": "kowal@wp.pl",
         "numer_telefonu": "123456789"
-    }
 }
 ```
 ### POST
