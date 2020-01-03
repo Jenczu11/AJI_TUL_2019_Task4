@@ -3,10 +3,19 @@ const _ = require("underscore");
 const OrderedProducts = require("../models/orderedproducts.js");
 
 exports.getAll = (req, res) => {
-  console.log("OrderController -> getAll");
+  // console.log(typeof(req.query))
+  if(Object.keys(req.query).length == 0){
+    // Your code here if x has some properties  
+    console.log("OrderController -> getAll");
   Order.getAll().then(function(allOrders) {
     res.json(allOrders);
   });
+   }
+   else {
+    getAllOrdersByUser(req,res);
+   }
+  
+  
 };
 exports.getOrderById = (req, res) => {
   console.log("OrderController -> getOrderById");
@@ -16,11 +25,12 @@ exports.getOrderById = (req, res) => {
       res.json(order);
     })
     .catch(err => {
-      res.status(404).json({ error: err.message });
+      res.status(404).json({ message: "Order not found"
+      ,error: err.message });
     });
 };
-
-exports.getAllOrdersByUser = (req, res) => {
+function getAllOrdersByUser (req, res) {
+  console.log(req.query.user)
   Order.getAll()
     .then(orders => {
       res.json(
@@ -33,6 +43,8 @@ exports.getAllOrdersByUser = (req, res) => {
       res.status(404).json({ error: err.message });
     });
 };
+exports.getAllOrdersByUser = getAllOrdersByUser
+
 exports.getAllOrdersByStatus = (req, res) => {
   console.log("OrderController -> getAllOrdersByStatus");
   console.log(req.params.status);
@@ -98,21 +110,18 @@ exports.addOrder = (req, res) => {
 };
 
 exports.updateById = (req, res) => {
-  console.log("OrderController -> updateById");
-  try {
-    Order.update(req.body.order)
+  console.log(`OrderController -> updateById ${req.body.id}`);
+    Order.update(req.body)
       .then(function(order) {
         res.json({
-          status: `updated order ${req.body.order.id}`,
+          status: `updated order ${req.body.id}`,
           updatedOrder: order
         });
       })
       .catch(err => {
-        res.status(500).json({ error: err.message });
+        res.status(404).json({ message: "Order to update not found"
+        ,error: err.message });
       });
-  } catch (error) {
-    res.status(500).json({ error: error });
-  }
 };
 exports.modifyOrderStatus = (req, res) => {
   console.log("OrderController -> modifyOrderStatus");

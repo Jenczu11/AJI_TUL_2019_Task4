@@ -9,22 +9,26 @@ const OrderStatesController = require('../controllers/OrderStatusController');
 const OrderController = require('../controllers/OrderController');
 
 // zdefiniowanie odpowiedzi dla "strony głównej"
-
+//Produkt
 router.get('/', IndexController.home);
 router.get('/products',ProductsController.getAll);
 router.get('/products/:id',ProductsController.getById);
 router.post('/products',ProductsController.store);
 router.put('/products',ProductsController.updateById);
-
+// Kategorie
 router.get('/categories',CategoriesController.getAll);
-
+// Stan zamowienia
 router.get('/status',OrderStatesController.getAll);
-
+// Zamowienia
 router.get('/orders',OrderController.getAll)
-router.get('/orders/id/:id',OrderController.getOrderById);
 router.post('/orders',OrderController.addOrder);
-router.put('/orders/',OrderController.updateById);
+router.put('/orders',OrderController.updateById);
+
+router.get('/orders/id/:id',OrderController.getOrderById);
+router.put('/orders/id/:id', OrderController.modifyOrderStatus);
+
 router.get('/orders/user/', OrderController.getAllOrdersByUser);
 router.get('/orders/status/:status', OrderController.getAllOrdersByStatus);
-router.put('/orders/:id/', OrderController.modifyOrderStatus);
+
+
 module.exports = router;

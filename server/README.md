@@ -104,7 +104,13 @@ localhost:8081/orders/status/{stan}
 ### PUT
 Zmiana stanu zamówienia
 ```http
-localhost:8081/orders/1/2
+localhost:8081/orders/{id_zamowienia}
+```
+Body
+```json
+{
+	"stan_zamowienia": "2"
+}
 ```
 Aktualizacja całego zamówienia
 ```http
