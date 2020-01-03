@@ -1,0 +1,848 @@
+{
+	"info": {
+		"_postman_id": "034cc2c3-dd9a-434c-8c5e-9d7e5330c911",
+		"name": "AJI_Task4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Produkt",
+			"item": [
+				{
+					"name": "wyświetlenie kompletnej listy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Zwroc wszystkie produkty",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/products",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "20119"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4e97-/iOuSq0UqKfLPLKAb1sVa/ZjxG4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 01 Dec 2019 19:45:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": []
+						}
+					]
+				},
+				{
+					"name": "Zwróc dany produktu o konkretnym identyfikatorze",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/products/10",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"products",
+								"10"
+							]
+						},
+						"description": "Wyświetlenie jednego elementu (po identyfikatorze),\nlocalhost:8081/products/1"
+					},
+					"response": [
+						{
+							"name": "Zwróc dany produktu o konkretnym identyfikatorze",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/products/10",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"products",
+										"10"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "149"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"95-NMBbiIYJ2W/nXPH4MW3/Wwvx1bk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 01 Dec 2019 19:47:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 10,\n    \"nazwa\": \"Ogórek melon\",\n    \"opis\": \"minim aliquip non cupidatat dolor\",\n    \"cena_jednostkowa\": 3.7539,\n    \"waga_jednostkowa\": 3.8043,\n    \"kategoria_towaru\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "Dodaj produkt do bazy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nazwa\": \"Nowy Produkt\",\n    \"opis\": \"Nowy Produkt\",\n    \"cena_jednostkowa\": 6,\n    \"waga_jednostkowa\": 2,\n    \"kategoria_towaru\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "\"Dell Latitude 5285\"",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "\"Better Laptop\"",
+									"disabled": true
+								},
+								{
+									"key": "price",
+									"value": "\"3300\"",
+									"disabled": true
+								},
+								{
+									"key": "amount",
+									"value": "\"2\"",
+									"disabled": true
+								}
+							]
+						},
+						"description": "dodanie elementu"
+					},
+					"response": []
+				},
+				{
+					"name": "Aktualizuj produkt o konkretnym identyfikatorze",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product\": {\n        \"id\": 217,\n        \"nazwa\": \"asdfasd\",\n        \"opis\": \"Nowy Produkt\",\n        \"cena_jednostkowa\": 6,\n        \"waga_jednostkowa\": 1,\n        \"kategoria_towaru\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Kategorie",
+			"item": [
+				{
+					"name": "Zwraca wszystkie kategorie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"categories"
+							]
+						},
+						"description": "localhost:8081/categories"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Stan Zamowienia",
+			"item": [
+				{
+					"name": "Zwraca wszystkie mozliwe stany zamowienia",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/status",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"status"
+							]
+						},
+						"description": "localhost:8081/status"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Zamowienia",
+			"item": [
+				{
+					"name": "Zwraca wszystkie zamówienia",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"orders"
+							]
+						},
+						"description": "localhost:8081/orders"
+					},
+					"response": [
+						{
+							"name": "Zwraca wszystkie zamówienia",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/orders",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "650"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28a-sPZ4oYZfKQJRiJ8HQcSLZF34NOQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 01 Dec 2019 19:57:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"data_zatwierdzenia\": \"2019-11-30T23:00:00.000Z\",\n        \"stan_zamowienia\": 3,\n        \"nazwa_uzytkownika\": \"Jan Kowalski\",\n        \"email\": \"kowal@wp.pl\",\n        \"numer_telefonu\": \"123456789\"\n    },\n    {\n        \"id\": 2,\n        \"data_zatwierdzenia\": \"2019-12-01T23:00:00.000Z\",\n        \"stan_zamowienia\": 1,\n        \"nazwa_uzytkownika\": \"test\",\n        \"email\": \"test@wp.pl\",\n        \"numer_telefonu\": \"987654321\"\n    },\n    {\n        \"id\": 3,\n        \"data_zatwierdzenia\": \"2019-12-02T23:00:00.000Z\",\n        \"stan_zamowienia\": 1,\n        \"nazwa_uzytkownika\": \"Janek Kowalski\",\n        \"email\": \"kowal@wp.pl\",\n        \"numer_telefonu\": \"kowal@wp.pl\"\n    },\n    {\n        \"id\": 4,\n        \"data_zatwierdzenia\": \"2019-12-03T23:00:00.000Z\",\n        \"stan_zamowienia\": 1,\n        \"nazwa_uzytkownika\": \"Jan Kowalski\",\n        \"email\": \"kowal@wp.pl\",\n        \"numer_telefonu\": \"kowal@wp.pl\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "wyswietl wszystkie uzytkownika",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/orders/user/?user=Jan Kowalski",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"orders",
+								"user",
+								""
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "Jan Kowalski"
+								}
+							]
+						},
+						"description": "localhost:8081/orders/user/?user=Jan Kowalski"
+					},
+					"response": []
+				},
+				{
+					"name": "wyświetlenie jednego elementu (po identyfikatorze)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/orders/id/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"orders",
+								"id",
+								"1"
+							]
+						},
+						"description": "localhost:8081/orders/1"
+					},
+					"response": [
+						{
+							"name": "wyświetlenie jednego elementu (po identyfikatorze)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/orders/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"orders",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "162"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a2-Mv7PvGIteHJvAH068lhxNxqqg0o\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 01 Dec 2019 19:57:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"data_zatwierdzenia\": \"2019-11-30T23:00:00.000Z\",\n    \"stan_zamowienia\": 3,\n    \"nazwa_uzytkownika\": \"Jan Kowalski\",\n    \"email\": \"kowal@wp.pl\",\n    \"numer_telefonu\": \"123456789\"\n}"
+						}
+					]
+				},
+				{
+					"name": "zmiana stanu zamówienia ",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/orders/1/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"orders",
+								"1",
+								"2"
+							]
+						},
+						"description": "(z walidacją poprawności zmiany, np. nie można zrealizować anulowanego zamówienia),\nlocalhost:8081/orders/1/3"
+					},
+					"response": [
+						{
+							"name": "Blad zmiany",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/orders/1/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"orders",
+										"1",
+										"2"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-5A+HAWyZxR2h3m2O7t9BZm5GjOU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 01 Dec 2019 19:58:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Nie mozesz zmienic statusu na poprzedni.\"\n}"
+						},
+						{
+							"name": "zmiana stanu zamówienia ",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/orders/1/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"orders",
+										"1",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "162"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a2-Mv7PvGIteHJvAH068lhxNxqqg0o\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 01 Dec 2019 19:58:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"data_zatwierdzenia\": \"2019-11-30T23:00:00.000Z\",\n    \"stan_zamowienia\": 3,\n    \"nazwa_uzytkownika\": \"Jan Kowalski\",\n    \"email\": \"kowal@wp.pl\",\n    \"numer_telefonu\": \"123456789\"\n}"
+						}
+					]
+				},
+				{
+					"name": "dodaje zamówienie (parametry w ciele żądania)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data_zatwierdzenia\": \"2019-12-03\",\n    \"stan_zamowienia\": 1,\n    \"nazwa_uzytkownika\": \"Jan\",\n    \"email\": \"kowal@wp.pl\",\n    \"numer_telefonu\": \"123456789\",\n    \"zamowione_produkty\": [\n        {\n            \"id_produktu\": 1,\n            \"ilosc\": 1\n        },\n        {\n            \"id_produktu\": 4,\n            \"ilosc\": 5\n        },\n        {\n            \"id_produktu\": 7,\n            \"ilosc\": 10\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"orders"
+							]
+						},
+						"description": "localhost:8081/orders"
+					},
+					"response": []
+				},
+				{
+					"name": "Aktualizuje cale zamowienie",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"order\": {\n    \t\"id\": \"3\",\n        \"data_zatwierdzenia\": \"2019-12-03\",\n        \"stan_zamowienia\": 1,\n        \"nazwa_uzytkownika\": \"Janek Kowalski\",\n        \"email\": \"kowal@wp.pl\",\n        \"numer_telefonu\": \"123456789\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"orders"
+							]
+						},
+						"description": "localhost:8081/orders"
+					},
+					"response": []
+				},
+				{
+					"name": "wyświetlenie zamówień wg stanu",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/orders/status/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"orders",
+								"status",
+								"1"
+							]
+						},
+						"description": "wyświetlenie zamówień wg stanu\nlocalhost:8081/orders/status/1"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "localhost:8081/products",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nazwa\": \"adsf\",\n    \"opis\": \"\",\n    \"cena_jednostkowa\": 6,\n    \"waga_jednostkowa\": 2,\n    \"kategoria_towaru\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/products",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "\"Dell Latitude 5285\"",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "\"Better Laptop\"",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "\"3300\"",
+							"disabled": true
+						},
+						{
+							"key": "amount",
+							"value": "\"2\"",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/products",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

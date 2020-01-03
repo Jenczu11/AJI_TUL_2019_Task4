@@ -49,7 +49,7 @@ exports.getAllOrdersByStatus = (req, res) => {
     });
 };
 
-exports.addOrder = async (req, res) => {
+exports.addOrder = (req, res) => {
   console.log("OrderController -> addOrder");
   // save
   try {
@@ -59,6 +59,7 @@ exports.addOrder = async (req, res) => {
     if (req.body.email.search(/^.+@.+\..+$/) === -1) {
       throw "Email jest błędny.";
     }
+    
     if (req.body.numer_telefonu.search(/^\+?[0-9]+$/) === -1) {
       throw "Numer telefonu jest błędny.";
     }
@@ -67,9 +68,10 @@ exports.addOrder = async (req, res) => {
       stan_zamowienia: req.body.stan_zamowienia,
       nazwa_uzytkownika: req.body.nazwa_uzytkownika,
       email: req.body.email,
-      numer_telefonu: req.body.email
+      numer_telefonu: req.body.numer_telefonu
     })
       .then(passedOrder => {
+        console.log("Po create")
         passedOrder.attributes.zamowione_produkty = [];
 
         for (i in req.body.zamowione_produkty) {
@@ -78,8 +80,11 @@ exports.addOrder = async (req, res) => {
             id_produktu: req.body.zamowione_produkty[i].id_produktu,
             ilosc: req.body.zamowione_produkty[i].ilosc
           });
+          console.log(zamowione_produkty);
           passedOrder.attributes.zamowione_produkty.push(zamowione_produkty);
+         console.log("przed save")
           zamowione_produkty.save();
+          console.log("posave")
         }
         return res.status(201).json(passedOrder);
       })

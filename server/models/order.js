@@ -4,6 +4,8 @@ const bookshelf = require('../config/bookshelf');
 
 const Order = bookshelf.Model.extend({
    tableName: 'zamowienie',
+   idAttribute: 'id',
+   defaults: {'id': null},
    orderedProducts() {
       return this.hasMany('OrderedProducts', 'id_zamowienia', 'id');
   },
@@ -18,9 +20,7 @@ module.exports.getAll = () => {
    return Order.fetchAll();
 }
 
-// module.exports.getById = (id) => {
-//    return new Product({'id':id}).fetch();
-// }
+
 
 module.exports.create = (order) => {
    return new Order( {
@@ -28,7 +28,7 @@ module.exports.create = (order) => {
     stan_zamowienia: order.stan_zamowienia,
     nazwa_uzytkownika: order.nazwa_uzytkownika,
     email: order.email,
-    numer_telefonu: order.email
+    numer_telefonu: order.numer_telefonu
 }).save();
 };
 

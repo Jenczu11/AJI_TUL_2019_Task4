@@ -3,6 +3,7 @@ const bookshelf = require('../config/bookshelf.js');
 const OrderedProducts = bookshelf.Model.extend({
     tableName: 'zamowienie_produkty',
     idAttribute: 'id',
+    defaults: {'id': null},
     product() {
         return this.belongsTo('Product', 'id_produktu', 'id');
     },
