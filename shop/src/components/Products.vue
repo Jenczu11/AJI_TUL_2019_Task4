@@ -16,7 +16,7 @@
            <td>{{product.opis}}</td>
            <td>{{product.cena_jednostkowa}}</td>
            <td>{{product.kategoria_towaru}}</td>
-           <td><button class="btn btn-sm" v-on:click="addToCart(product)">Add to Cart</button></td>
+           <td><button class="btn btn-sm" v-on:click="addProductToCart(product)">Add to Cart</button></td>
        </tr>
    </table>
    </div>
@@ -27,10 +27,12 @@
 import axios from 'axios';
 import ProductFilter from "@/components/ProductFilter"
 import _ from "lodash";
+import { mapState, mapActions } from 'vuex'
+
 export default {
    name: 'Products',
    components: {ProductFilter},
-   props: ['cart'],
+//    props: ['cart'],
    data() {
        return {
            products: [],
@@ -42,10 +44,14 @@ export default {
            }
        };
    },
-   methods: {
+   methods: 
+   {
+     ...mapActions('cart', [
+    'addProductToCart'
+  ]),
        getAllProdcuts: function() {
     axios
-     .get('http://127.0.0.1:8081/products')
+     .get('http://localhost:8081/products')
      .then(res => {
          this.products = res.data;
          this.product_duplicate = res.data;
@@ -53,15 +59,20 @@ export default {
        },
        getAllCategories: function() {
            axios
-     .get('http://127.0.0.1:8081/categories')
+     .get('http://localhost:8081/categories')
      .then(res => {
          this.kategorie = res.data;
          this.kategorie.unshift({"id": 'all', "nazwa": "wszystkie"});
          });
        },
        addToCart(product){
-           console.log(product)
-           this.cart.push(product);
+        //  let cart = this.$store.state.cart
+          //  console.log(product)
+        //    this.cart.push(product);
+        // console.log(this.$store.state);
+        // this.$store.state.cart.items.push(product);
+        // this.$store.state.items.push(product)
+        // console.log(this.$store.state.items)
        },
 
       filterProductByString(value) {
@@ -70,10 +81,7 @@ export default {
 
 
     //  return null
-    }
-  
-    
-       
+    },
    },
    created: function() {
     this.getAllCategories();
@@ -110,3 +118,5 @@ export default {
 }
 }
 </script>
+<style>
+</style>

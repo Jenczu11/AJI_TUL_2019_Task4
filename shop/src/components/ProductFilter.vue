@@ -55,7 +55,7 @@ export default {
     },
     getAllCategories: function() {
            axios
-     .get('http://127.0.0.1:8081/categories')
+     .get('http://localhost:8081/categories')
      .then(res => {
          this.kategorie = res.data;
          this.kategorie.unshift({"id": 'all', "nazwa": "wszystkie"});
@@ -71,4 +71,10 @@ export default {
   
 };
 </script>
+<style>
 
+.productFilter {
+  margin-left: 60px;
+  margin-right: 60px;
+}
+</style>
