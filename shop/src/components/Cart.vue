@@ -9,12 +9,14 @@
            <th>Description</th>
            <th>Price</th>
            <th>Kategoria towaru</th>
+           <th>Ilość zakupionego towaru</th>
        </tr>
-       <tr v-for="product in filtered" v-bind:key="product.name">
-           <td>{{product.nazwa}}</td>
-           <td>{{product.opis}}</td>
-           <td>{{product.cena_jednostkowa}}</td>
-           <td>{{product.kategoria_towaru}}</td>
+       <tr v-for="p in filtered" v-bind:key="p.product.nazwa">
+           <td>{{p.product.nazwa}}</td>
+           <td>{{p.product.opis}}</td>
+           <td>{{p.product.cena_jednostkowa}}</td>
+           <td>{{p.product.kategoria_towaru}}</td>
+           <td>{{p.quantity}} <button v-on:click="addProductToCart(p.product)">+</button><button>-</button> </td>
        </tr>
    </table>
    </div>
@@ -28,7 +30,10 @@ export default {
   methods: {
    ...mapGetters('cart',{
      returnItems: 'returnItems'
-   })
+   }),
+    ...mapActions('cart', [
+    'addProductToCart'
+  ]),
  },
  computed:{
    filtered() {
