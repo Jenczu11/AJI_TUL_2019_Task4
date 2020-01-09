@@ -46,7 +46,7 @@ export default {
   },
   computed: {
     filtered() {
-      console.log(this.returnItems());
+      // console.log(this.returnItems());
       return this.returnItems();
     },
     totalPrice() {

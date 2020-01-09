@@ -1,6 +1,6 @@
 <template>
  <div id="app">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
  <a class="navbar-brand"> <router-link to="/">Shop</router-link></a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +22,7 @@
   </div>
 </nav>
   <router-view></router-view>
-    <footer class="my-5 pt-5 text-muted text-center text-small">
+    <footer class="footer mt-auto py-3 text-muted text-center text-small">
         <p class="mb-1">&copy; 2019 bjencz</p>
         <ul class="list-inline">
           <li class="list-inline-item"><a href="#">Privacy</a></li>
@@ -68,6 +68,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 0px;
+  background-color: #f8f9fa!important;
   
 }
 nav {
