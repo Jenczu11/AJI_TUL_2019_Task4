@@ -1,6 +1,6 @@
 <template>
 <div>
-  <b-link to="/products"> <h1>Welcome to my shop go to products</h1></b-link>
+  <h1>Welcome to my shop</h1>
 </div>
 </template>
 
