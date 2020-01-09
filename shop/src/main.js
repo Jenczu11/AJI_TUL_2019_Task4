@@ -25,7 +25,8 @@ import Home from './components/Home'
 import Cart from './components/Cart'
 import About from './components/About'
 import Checkout from './components/Checkout'
-
+import ProductDetail from './components/ProductDetail'
+import ProductEdit from './components/ProductEdit'
 // Vue.use
 Vue.use(Vuex)
 
@@ -37,12 +38,16 @@ const routes = [
   {path: '/', component: Home},
   {path: '/cart', component: Cart},
   {path: '/about', component: About},
-  {path: '/checkout', component: Checkout}
+  {path: '/checkout', component: Checkout},
+  {path: '/products/:id', component: ProductDetail},
+  {path: '/edit/:id', component: ProductEdit}
 ]
 const router = new VueRouter({
   routes,
   mode: "history"
 });
+
+/* eslint-disable no-new */
 new Vue({
   router,
   store,

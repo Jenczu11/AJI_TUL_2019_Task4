@@ -1,37 +1,48 @@
 <template>
+<div>
+ 
 <div class="row">
-<div class="col-md-3 order-md-1 mb-4">
+<div class="col-md-4 order-md-1 mb-4">
     <ProductFilter :kategorie="kategorie" v-on:chosenFilter="filterProductByString"/>
 </div>
- <div class="col-md-9 order-md-2">
-   <table>
+ <div class="col-md-8 order-md-2">
+   <table class="table">
+     <thead class="thead-dark">
        <tr>
-           <th>Name</th>
-           <th>Description</th>
-           <th>Price</th>
-           <th>Kategoria towaru</th>
+           <th scope="col">Name</th>
+           <th scope="col">Description</th>
+           <th scope="col">Price</th>
+           <th scope="col">Kategoria towaru</th>
+          <th scope="col"></th>
+          <th v-if="admin" scope="col"></th>
        </tr>
+     </thead>
+    
        <tr v-for="product in filtered" v-bind:key="product.name">
            <td>{{product.nazwa}}</td>
            <td>{{product.opis}}</td>
            <td>{{product.cena_jednostkowa.toFixed(2)}}</td>
            <td>{{product.kategoria_towaru}}</td>
-           <td><button class="btn btn-sm" v-on:click="addProductToCart(product)">Add to Cart</button></td>
+           <td><button class="btn btn-outline-success" v-on:click="addProductToCart(product)">Add to Cart</button></td>
+           <td v-if="admin"><router-link class="btn btn-outline-warning" v-bind:to="'/products/'+product.id">Details</router-link></td>
        </tr>
    </table>
    </div>
 </div>
+</div>
 </template>
 
 <script>
+/* eslint-disable vue/no-unused-components */
 import axios from 'axios';
 import ProductFilter from "@/components/ProductFilter"
+import Alert from "@/components/Alert"
 import _ from "lodash";
 import { mapState, mapActions } from 'vuex'
 
 export default {
    name: 'Products',
-   components: {ProductFilter},
+   components: {ProductFilter,Alert},
 //    props: ['cart'],
    data() {
        return {
@@ -41,7 +52,9 @@ export default {
            fromChild: {
                wybranaNazwa: '',
                wybranaKategoria: 'wszystkie'
-           }
+           },
+           alert: '',
+           admin: true
        };
    },
    methods: 
@@ -65,22 +78,9 @@ export default {
          this.kategorie.unshift({"id": 'all', "nazwa": "wszystkie"});
          });
        },
-       addToCart(product){
-        //  let cart = this.$store.state.cart
-          //  console.log(product)
-        //    this.cart.push(product);
-        // console.log(this.$store.state);
-        // this.$store.state.cart.items.push(product);
-        // this.$store.state.items.push(product)
-        // console.log(this.$store.state.items)
-       },
-
       filterProductByString(value) {
          this.fromChild = value;
          console.log(value)
-
-
-    //  return null
     },
    },
    created: function() {
