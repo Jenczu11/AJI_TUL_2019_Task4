@@ -22,8 +22,9 @@ dom.watch()
 // Components
 import Products from './components/Products'
 import Home from './components/Home'
-import Cart from './components/Cart2'
+import Cart from './components/Cart'
 import About from './components/About'
+import Checkout from './components/Checkout'
 
 // Vue.use
 Vue.use(Vuex)
@@ -35,7 +36,8 @@ const routes = [
   {path: '/products', component: Products},
   {path: '/', component: Home},
   {path: '/cart', component: Cart},
-  {path: '/about', component: About}
+  {path: '/about', component: About},
+  {path: '/checkout', component: Checkout}
 ]
 const router = new VueRouter({
   routes,

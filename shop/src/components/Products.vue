@@ -14,7 +14,7 @@
        <tr v-for="product in filtered" v-bind:key="product.name">
            <td>{{product.nazwa}}</td>
            <td>{{product.opis}}</td>
-           <td>{{product.cena_jednostkowa}}</td>
+           <td>{{product.cena_jednostkowa.toFixed(2)}}</td>
            <td>{{product.kategoria_towaru}}</td>
            <td><button class="btn btn-sm" v-on:click="addProductToCart(product)">Add to Cart</button></td>
        </tr>
