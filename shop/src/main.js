@@ -1,3 +1,4 @@
+/* eslint no-console: ["error", { allow: ["log", "error"] }] */
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
@@ -27,6 +28,8 @@ import About from './components/About'
 import Checkout from './components/Checkout'
 import ProductDetail from './components/ProductDetail'
 import ProductEdit from './components/ProductEdit'
+import Orders from './components/Orders'
+import OrderDetail from './components/OrderDetail'
 // Vue.use
 Vue.use(Vuex)
 
@@ -40,7 +43,9 @@ const routes = [
   {path: '/about', component: About},
   {path: '/checkout', component: Checkout},
   {path: '/products/:id', component: ProductDetail},
-  {path: '/edit/:id', component: ProductEdit}
+  {path: '/edit/:id', component: ProductEdit},
+  {path: '/orders', component: Orders},
+  {path: '/orders/:id', component: OrderDetail}
 ]
 const router = new VueRouter({
   routes,
@@ -48,6 +53,7 @@ const router = new VueRouter({
 });
 
 /* eslint-disable no-new */
+/* eslint no-console: ["error", { allow: ["log", "error"] }] */
 new Vue({
   router,
   store,

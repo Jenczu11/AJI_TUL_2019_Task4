@@ -3,7 +3,7 @@ module.exports = {
     // debug: true,
     client: 'mysql',
     connection: {
-        host:'127.0.0.1',
+        host:'db',
         user: 'root',
         password: 'example',
         database: 'shop',    

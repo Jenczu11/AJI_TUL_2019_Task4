@@ -6,11 +6,11 @@
     </h4>
     <ul class="list-group mb-3">
       <li v-for="p in filtered" v-bind:key="p.product.nazwa" class="list-group-item d-flex justify-content-between lh-condensed">
-        <div>
+        <div id="productNameDiv" class="text-left">
           <h6 class="my-0">{{p.product.nazwa}}</h6>
           <small class="text-muted">{{p.product.opis}}</small>
         </div>
-        <span v-if="p.quanitty==1" class="text-muted">${{p.product.cena_jednostkowa.toFixed(2)}}</span>
+        <span v-if="p.quantity==1" class="text-muted">${{p.product.cena_jednostkowa.toFixed(2)}}</span>
         <span v-else class="text-muted">{{p.quantity}} x ${{p.product.cena_jednostkowa.toFixed(2)}}</span>
       </li>
       <li class="list-group-item d-flex justify-content-between">
@@ -58,4 +58,8 @@ export default {
 </script>
 
 <style>
+
+div#productNameDiv{
+  width: 240px;
+}
 </style>

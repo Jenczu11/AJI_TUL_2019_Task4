@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-   <div class="card shopping-cart">
+   <div class="card shopping-cart" v-if="filtered.length>0">
             <div class="card-header bg-dark text-light">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                 Shopping cart
@@ -9,8 +9,8 @@
             <div class="card-body">
                     <!-- PRODUCT STARTS HERE --> 
                     <div class="row" v-for="p in filtered" v-bind:key="p.product.nazwa">
-                        <div class="col-12 col-sm-12 col-md-2 text-center">
-                                <img class="img-responsive" src="https://placeimg.com/120/80/arch/sepia" alt="prewiew" width="120" height="80">
+                        <div class="col-12 col-sm-12 col-md-2 col-xl-2 text-center">
+                                <img class="img-responsive" v-bind:src="`https://i.picsum.photos/id/${(Math.floor(Math.random() * (600 - 0)) + 0)}/120/80.jpg`" alt="prewiew" width="120" height="80">
                         </div>
                         <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
                             <h4 class="product-name"><strong>{{p.product.nazwa}}</strong></h4>
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                     </div>
-                    <hr>
+                   
                     <!-- END PRODUCT -->
                     
             </div>
@@ -59,6 +59,7 @@
                 </div>
             </div>
         </div>
+    <h1 v-else>Sorry your cart is empty</h1>
        
 </div>
 </template>
@@ -92,7 +93,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 .quantity {
     float: left;
@@ -159,5 +160,8 @@ export default {
 }
 .shopping-cart {
     margin-top: 20px;
+}
+.row {
+    margin-bottom: 1em;
 }
 </style>

@@ -10,7 +10,9 @@
           <div class="row">
             <!-- First Name -->
             <div class="col-md-6 mb-3">
-              <label for="firstName">First name</label>
+              <div class="text-left">
+              <label for="firstName" class="text-left">First name</label>
+              </div>
               <input
                 type="text"
                 class="form-control"
@@ -24,7 +26,9 @@
             </div>
             <!-- Last Name -->
             <div class="col-md-6 mb-3">
+              <div class="text-left">
               <label for="lastName">Last name</label>
+              </div>
               <input
                 type="text"
                 class="form-control"
@@ -39,7 +43,9 @@
           </div>
           <!-- UserName -->
           <div class="mb-3">
+            <div class="text-left">
             <label for="username">Username</label>
+            </div>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text">@</span>
@@ -57,7 +63,9 @@
           </div>
           <!-- Email -->
           <div class="mb-3">
+            <div class="text-left">
             <label for="email">Email</label>
+            </div>
             <input
               type="email"
               class="form-control"
@@ -70,7 +78,9 @@
           </div>
           <!-- Telephone -->
           <div class="mb-3">
+            <div class="text-left">
             <label for="tel-input">Telephone</label>
+            </div>
             <input
               type="tel"
               class="form-control"
@@ -85,7 +95,9 @@
           </div>
           <!-- Address -->
           <div class="mb-3">
+            <div class="text-left">
             <label for="address">Address</label>
+            </div>
             <input
               type="text"
               class="form-control"
@@ -100,7 +112,9 @@
 
           <div class="row">
             <div class="col-md-5 mb-3">
+              <div class="text-left">
               <label for="country">Country</label>
+              </div>
               <select
                 class="custom-select d-block w-100"
                 v-model="customer.country"
@@ -114,7 +128,9 @@
             </div>
             <!-- State -->
             <div class="col-md-4 mb-3">
+              <div class="text-left">
               <label for="state">State</label>
+              </div>
               <select
                 class="custom-select d-block w-100"
                 v-model="customer.state"
@@ -128,7 +144,9 @@
             </div>
             <!-- Zip -->
             <div class="col-md-3 mb-3">
+              <div class="text-left">
               <label for="zip">Zip</label>
+              </div>
               <input
                 type="text"
                 class="form-control"

@@ -26,10 +26,10 @@ export default {
     }
   },
   methods:{
-      async fetchProduct(id){
-        let res = await axios.get('http://localhost:8081/products/'+id);
-          this.product = res.data
-      
+       fetchProduct(id){
+        axios.get('http://localhost:8081/products/'+id).then(res => {
+             this.product = res.data
+        })
       },
   },
   created: function(){

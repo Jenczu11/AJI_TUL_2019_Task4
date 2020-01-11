@@ -1,6 +1,21 @@
 # AJI_TUL_2019_Task4
 Zadanie 4 - aplikacja końcowa. Termin - XIII zajęcia
+# Using docker to run node.app
+Go into server folder and run
+```bash
+docker build -t jj/shop-server .
+docker run --name shop-server -p {port you want to have it}:8081 -d jj/shop-server 
+docker run --name shop-server -p 8081:8081 -d  jj/shop-server
+```
+Check if it is running
+```bash
+docker logs shop-server
+```
 
+```bash
+docker build -t jj/shop-frontend .
+docker run -it -p 8080:80 --rm --name shop-frontend jj/shop-frontend
+```
 # Using docker with mysql
 This command will launch clean database for mysql with adminer
 ```bash

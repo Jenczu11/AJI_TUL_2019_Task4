@@ -4,12 +4,12 @@
       <h4 class="d-flex mb-3">
         <span class="text-muted">Filters:</span>
       </h4>
+      <hr style="border: 0.7px solid #87619c;">
       <div class="form-group">
         <label>Filtruj po kategorii:</label>
         <select
           class="form-control"
-          
-         v-model="wybranaKategoria"
+         v-model="chosenCategory"
           @change="emitToParent"
         >
           <option 
@@ -19,70 +19,64 @@
             
           >{{kategoria.nazwa}}</option>
         </select>
-       
       </div>
-      <hr>
+      <hr style="border: 0.7px solid #87619c;">
       <div class="form-group">
-        <label>Filtruj po nazwie:</label>
-       <input v-model="wybranaNazwa" 
+        
+        <label>Filtruj po nazwie użytkownika:</label>
+       <input v-model="userNameFilter" 
        class="form-control" 
-       name="wybranaNazwa"
+       name="userNameFilter"
        v-on:keyup="emitToParent">
       </div>
+      <hr style="border: 0.7px solid #87619c;">
+        <div class="form-group">
+        <label>Filtruj po mailu:</label>
+       <input v-model="mailFilter" 
+       class="form-control" 
+       name="mailFilter"
+       v-on:keyup="emitToParent">
+      </div>
+      
     </div>
-    
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 export default {
-  name: "productFilter",
+  name: "OrdersFilter",
   props: ["kategorie"],
   data: function() {
        return {
-           wybranaKategoria: "wszystkie",
-           wybranaNazwa: ""
+           chosenCategory: "WSZYSTKIE",
+           userNameFilter: "",
+           mailFilter: ""
+           
            
        }
    },
    methods: {
        updateProductCategory(event) {
-    //   this.$parent.filterProductByCategory(event);
     },
     emitToParent (event) {
-        let wybranaNazwa = this.wybranaNazwa
-        let wybranaKategoria = this.wybranaKategoria
-      this.$emit('chosenFilter', {wybranaNazwa, wybranaKategoria})
+        let userNameFilter = this.userNameFilter
+        let chosenCategory = this.chosenCategory
+        let mailFilter = this.mailFilter
+      this.$emit('chosenFilter', {userNameFilter, chosenCategory,mailFilter})
     },
-    getAllCategories: function() {
-           axios
-     .get('http://localhost:8081/categories')
-     .then(res => {
-         this.kategorie = res.data;
-         this.kategorie.unshift({"id": 'all', "nazwa": "wszystkie"});
-         });
-         
-       },
-
    },
    created() {
-    // this.getAllCategories();
   }
    
   
 };
 </script>
-<style>
+<style scoped>
 
 .productFilter {
   margin-left: 60px;
   margin-right: 60px;
-}
-#prdfilter{
-  border-radius: 25px;
-  border: 2px solid #87619c;
-  padding: 20px;
 }
 hr {
   border: 0.7px solid #87619c!important;
