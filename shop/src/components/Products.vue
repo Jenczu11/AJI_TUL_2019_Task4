@@ -101,7 +101,7 @@ export default {
       });
     },
     getAllCategories: function() {
-      axios.get("127.0.0.1:8081git/categories").then(res => {
+      axios.get("127.0.0.1:8081/categories").then(res => {
         this.kategorie = res.data;
         this.kategorie.unshift({ id: "all", nazwa: "wszystkie" });
       });
