@@ -52,6 +52,17 @@ const router = new VueRouter({
   mode: "history"
 });
 
+Vue.mixin({
+  methods: {
+    getCurrentURL: function(){
+      var url = window.location.href
+      var arr = url.split("/");
+      var result = arr[0]+"//"+arr[2].split(":")[0];
+      return result;
+    }
+  }
+})
+
 /* eslint-disable no-new */
 /* eslint no-console: ["error", { allow: ["log", "error"] }] */
 new Vue({
