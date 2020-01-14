@@ -57,7 +57,7 @@ export default {
     },
     getAllCategories: function() {
            axios
-     .get('http://localhost:8081/categories')
+     .get(`${this.getCurrentURL}:8081/categories`)
      .then(res => {
          this.kategorie = res.data;
          this.kategorie.unshift({"id": 'all', "nazwa": "wszystkie"});

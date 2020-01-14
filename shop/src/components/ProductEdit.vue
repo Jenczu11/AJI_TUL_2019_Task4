@@ -66,7 +66,7 @@ export default {
     fetchProduct(id) {
       let vw = this;
       axios
-        .get("http://localhost:8081/products/" + id)
+        .get(`${this.getCurrentURL}:8081/products/` + id)
         .then(function(response) {
           console.log(response.data);
           vw.product = response.data;
@@ -74,7 +74,7 @@ export default {
     },
     fetchCategories() {
       let vw = this;
-      axios.get("http://localhost:8081/categories/").then(function(response) {
+      axios.get(`${this.getCurrentURL}:8081/categories/`).then(function(response) {
         console.log(response);
         vw.categories = response.data;
       });
@@ -96,7 +96,7 @@ export default {
           kategoria_towaru: this.product.kategoria_towaru
         }
       };
-      axios.put("http://localhost:8081/products", updProduct).then(res => {
+      axios.put(`${this.getCurrentURL}:8081/products`, updProduct).then(res => {
         console.log(res);
           setTimeout(function() {
               vm.$router.push({ path: "/products" });

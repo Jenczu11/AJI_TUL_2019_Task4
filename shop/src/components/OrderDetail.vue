@@ -48,7 +48,7 @@ export default {
   },
   methods:{
        fetchOrder(id){
-        return axios.get('http://localhost:8081/orders/'+id).then( res => {
+        return axios.get(`${this.getCurrentURL}:8081/orders/`+id).then( res => {
              this.order = res.data
         })     
       },
@@ -57,7 +57,7 @@ export default {
           let errorStatus=false;
           if(PUT)
             {
-            await axios.put(`http://localhost:8081/orders/${this.$route.params.id}/status/${status}`).then(res => {
+            await axios.put(`${this.getCurrentURL}:8081/orders/${this.$route.params.id}/status/${status}`).then(res => {
                 console.log(res)
             }).catch(function(error) {
                 errorStatus=true;

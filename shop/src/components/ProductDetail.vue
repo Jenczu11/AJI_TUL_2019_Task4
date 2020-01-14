@@ -27,7 +27,7 @@ export default {
   },
   methods:{
        fetchProduct(id){
-        axios.get('http://localhost:8081/products/'+id).then(res => {
+        axios.get(`${this.getCurrentURL}:8081/products/`+id).then(res => {
              this.product = res.data
         })
       },

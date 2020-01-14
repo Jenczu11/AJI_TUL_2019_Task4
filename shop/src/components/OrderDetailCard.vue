@@ -70,7 +70,7 @@ export default {
   },
     methods:{
        fetchOrder(id){
-        return axios.get('http://localhost:8081/orders/'+id).then( res => {
+        return axios.get(`${this.getCurrentURL}:8081/orders/`+id).then( res => {
             // console.log(res.data)
              this.order = res.data
         })     
@@ -79,7 +79,7 @@ export default {
         for(let product of this.order.orderedProducts)
         {
             console.log(product)
-            axios.get("http://localhost:8081/products/"+product.id_produktu).then(res => {
+            axios.get(`${this.getCurrentURL}:8081/products/`+product.id_produktu).then(res => {
                 this.products.push(res.data)
             })
         }

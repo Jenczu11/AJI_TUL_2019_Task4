@@ -61,13 +61,13 @@ export default {
   },
   methods: {
     fetchOrders: function() {
-      return axios.get("http://localhost:8081/orders").then(res => {
+      return axios.get(`${this.getCurrentURL}:8081/orders`).then(res => {
         console.log(res.data);
         this.orders = res.data;
       });
     },
     fetchStatus: function() {
-      return axios.get("http://localhost:8081/status").then(res => {
+      return axios.get(`${this.getCurrentURL}:8081/status`).then(res => {
         console.log(res.data);
         this.status = res.data;
         this.status.unshift({ id: "all", nazwa: "WSZYSTKIE" });

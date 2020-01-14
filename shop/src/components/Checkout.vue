@@ -239,7 +239,7 @@ export default {
           })
         };
         axios
-          .post("http://localhost:8081/orders", datatosend)
+          .post(`${this.getCurrentURL}:8081/orders`, datatosend)
           .then(function(response) {
             console.log(response);
             setTimeout(function() {
