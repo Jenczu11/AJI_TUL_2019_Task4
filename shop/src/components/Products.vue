@@ -95,13 +95,13 @@ export default {
     },
     ...mapActions("cart", ["addProductToCart"]),
     getAllProdcuts: function() {
-      axios.get("http://localhost:8081/products").then(res => {
+      axios.get("localhost:8081/products").then(res => {
         this.products = res.data;
         this.product_duplicate = res.data;
       });
     },
     getAllCategories: function() {
-      axios.get("http://localhost:8081/categories").then(res => {
+      axios.get("localhost:8081/categories").then(res => {
         this.kategorie = res.data;
         this.kategorie.unshift({ id: "all", nazwa: "wszystkie" });
       });
